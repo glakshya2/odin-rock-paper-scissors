@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice(){
+            let choiceNumber = Math.random();
+            if(choiceNumber < 0.33){
+                return "rock";
+            } else if (choiceNumber >= 0.33 && choiceNumber < 0.66){
+                return "paper";
+            }
+            return "scissor";
+        }
+
+        function getPlayerChoice(){
+            return prompt("What is your choice?").toLowerCase();
+        }
+
+        function computeWinner(computerChoice, playerChoice){
+            if(computerChoice == playerChoice){
+                return "Tie";
+            }
+            let computer = "Computer Wins";
+            let player = "Player Wins";
+            if (computerChoice == "rock"){
+                if(playerChoice == "paper"){
+                    return player;
+                }
+                return computer;
+            } else if (computerChoice == "paper"){
+                if (playerChoice == "scissors"){
+                    return player;
+                }
+                return computer;
+            }
+            if(playerChoice == "rock"){
+                return player;
+            }
+            return computer;
+        }
+
+        function game(){
+            let playerScore = 0;
+            let computerScore = 0;
+            for(let i = 0; i<5; i++){
+                let result = computeWinner(getComputerChoice(), getPlayerChoice());
+                if(result == "Computer Wins"){
+                    computerScore++;
+                    console.log("Computer Wins");
+                } else if (result == "Player Wins"){
+                    playerScore++;
+                    console.log("Player Wins");
+                } else {
+                    console.log("Tie");
+                }
+            }
+            console.log("Player Score = " + playerScore);
+            console.log("Computer Score = " + computerScore);
+            if(playerScore > computerScore){
+                console.log("Player Wins");
+            } else if ( computerScore > playerScore){
+                console.log("Computer Wins");
+            } else {
+                console.log("Tie");
+            }
+        }
+    </script>
+</body>
+</html>
